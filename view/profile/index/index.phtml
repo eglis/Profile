@@ -61,20 +61,8 @@
     			<div class="tab-content">
     			    <div class="tab-pane active" id="tab1">
     			        <div class="row">
-    			                <?php if($form->get('file')->getValue()): ?>
-        			                <div class="col-md-2">
-        			                    <?php if (exif_imagetype(__DIR__ . "/../../../../public/" . $form->get('file')->getValue())): ?>
-        			                        <img class="img-responsive img-rounded" src="<?php echo is_string($form->get('file')->getValue()) ? $form->get('file')->getValue() : null ?>" alt=""/>
-        			                    <?php else: ?>
-        			                        <p class="text-center"><a class="btn btn-success" href="<?php echo $form->get('file')->getValue() ?>"><?php echo $this->translate('Download file')?></a></p>
-        			                    <?php endif; ?>
-        			                    
-                                        <?php if($form->get('file')->getValue()): ?>
-                                           <br/><hr/><p class="text-center"><a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" class="btn btn-danger" href="/profile/index/delfile"><?php echo $this->translate('Delete File')?></a></p>
-                                       <?php endif; ?>
-        			                </div>
-    			                <?php endif; ?>
-                                <div class="<?php echo $form->get('file')->getValue() ? "col-md-10" : "col-md-12"; ?>">
+
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <?php echo $this->formLabel($form->get('name')); ?>
                                         <div class="input-group input-group-lg">
