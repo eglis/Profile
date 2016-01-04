@@ -1,5 +1,5 @@
 {
-  "name": "shineisp/shineisp-base",
+  "name": "shineisp/shineisp-profile",
   "description": "Profile module for ShineISP project",
   "license": "BSD-2-Clause",
   "type": "library",
