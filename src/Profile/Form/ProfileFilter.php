@@ -28,7 +28,7 @@ class ProfileFilter extends InputFilter
     	                        array(
     	                                'name' => 'File\RenameUpload',
     	                                'options' => array(
-    	                                        'target' => __DIR__ . '/../../../../documents/profiles/',
+    	                                        'target' => __DIR__ . '/../../../../public/documents/profiles/',
     	                                        'overwrite' => true,
     	                                        'use_upload_name' => true,
     	                                ),

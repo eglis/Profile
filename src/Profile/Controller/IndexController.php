@@ -179,8 +179,8 @@ class IndexController extends AbstractActionController
         $profile = $this->profileService->getByUserId($userId );
         
         // create the profile upload directories
-        @mkdir(__DIR__ . '/../../../../documents/');
-        @mkdir(__DIR__ . '/../../../../documents/profiles');
+        @mkdir(__DIR__ . '/../../../../public/documents/');
+        @mkdir(__DIR__ . '/../../../../public/documents/profiles');
 
         if (! $this->request->isPost()) {
             return $this->redirect()->toRoute(NULL, array (
@@ -198,7 +198,7 @@ class IndexController extends AbstractActionController
         
         // customize the path
         if(!empty($strslug)){
-            @mkdir(__DIR__ . '/../../../../documents/profiles/' . $strslug);
+            @mkdir(__DIR__ . '/../../../../public/documents/profiles/' . $strslug);
         }
         
         $form->setData($post);
