@@ -48,7 +48,6 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
-use Profile\Service\ProfileService;
 use Profile\Entity\Profile;
 use Profile\Entity\ProfileCategory;
 use Profile\Entity\ProfileSettings;
