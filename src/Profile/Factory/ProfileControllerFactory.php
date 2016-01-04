@@ -18,13 +18,12 @@ class ProfileControllerFactory implements FactoryInterface
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
         $profileSettingService = $realServiceLocator->get('ProfileSettingsService');
-        $googleService = $realServiceLocator->get('GoogleCalendarProfiles');
         $eventService = $realServiceLocator->get('ProfileService');
         $eventSettings = $realServiceLocator->get('SettingsService');
         
         $form = $realServiceLocator->get('FormElementManager')->get('Profile\Form\ProfileForm');
         $formfilter = $realServiceLocator->get('ProfileFilter');
         
-        return new IndexController($eventService, $profileSettingService, $googleService, $form, $formfilter, $eventSettings);
+        return new IndexController($eventService, $profileSettingService, $form, $formfilter, $eventSettings);
     }
 }

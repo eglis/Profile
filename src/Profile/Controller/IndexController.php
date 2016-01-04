@@ -26,7 +26,6 @@ class IndexController extends AbstractActionController
 	protected $filter;
 	protected $baseSettings;
 	protected $profileSettingService;
-	protected $googlecalendarsettingservice;
 	protected $translator;
 	
 	/**
@@ -43,15 +42,13 @@ class IndexController extends AbstractActionController
 	
 	public function __construct(ProfileServiceInterface $profileService, 
 	                            \Profile\Service\ProfileSettingsServiceInterface $profileSetting,
-	                            \GoogleCalendar\Service\GoogleCalendarProfileServiceInterface $googlecalendarsettingservice, 
-	                            \Profile\Form\ProfileForm $form, 
+	                            \Profile\Form\ProfileForm $form,
 								\Profile\Form\ProfileFilter $formfilter, 
 	                            SettingsServiceInterface $settings)
 	{
 		$this->profileService = $profileService;
 		$this->profileSettingService = $profileSetting;
 		$this->baseSettings = $settings;
-		$this->googlecalendarsettingservice = $googlecalendarsettingservice;
 		$this->form = $form;
 		$this->filter = $formfilter;
 	}
