@@ -15,7 +15,7 @@
             
             <?php if(!empty($profile)): ?>
                 <h2>
-                <?php if (NULL != $form->get('file')->getValue() && exif_imagetype(__DIR__ . "/../../../../" .$form->get('file')->getValue())): ?>
+                <?php if (NULL != $form->get('file')->getValue() && exif_imagetype(__DIR__ . "/../../../../public/" .$form->get('file')->getValue())): ?>
                     <img class="img-responsive pull-left img-circle" width="150" height="150" src="<?php echo is_string($form->get('file')->getValue()) ? $form->get('file')->getValue() : null ?>" alt="<?php echo $this->translate('My photo profile')?>"/>
                 <?php else: ?>
                     <img width="150" height="150" src="/img/about/2.jpg" class="pull-left img-circle img-responsive"> 
@@ -63,7 +63,7 @@
     			        <div class="row">
     			                <?php if($form->get('file')->getValue()): ?>
         			                <div class="col-md-2">
-        			                    <?php if (exif_imagetype(__DIR__ . "/../../../../" . $form->get('file')->getValue())): ?>
+        			                    <?php if (exif_imagetype(__DIR__ . "/../../../../public/" . $form->get('file')->getValue())): ?>
         			                        <img class="img-responsive img-rounded" src="<?php echo is_string($form->get('file')->getValue()) ? $form->get('file')->getValue() : null ?>" alt=""/>
         			                    <?php else: ?>
         			                        <p class="text-center"><a class="btn btn-success" href="<?php echo $form->get('file')->getValue() ?>"><?php echo $this->translate('Download file')?></a></p>
