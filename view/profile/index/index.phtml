@@ -12,18 +12,10 @@
 <div class="header-cp">
     <div class="row">
         <div class="col-lg-12">
-            
             <?php if(!empty($profile)): ?>
-                <h2>
-                <?php if (NULL != $form->get('file')->getValue() && exif_imagetype(__DIR__ . "/../../../../public/" .$form->get('file')->getValue())): ?>
-                    <img class="img-responsive pull-left img-circle" width="150" height="150" src="<?php echo is_string($form->get('file')->getValue()) ? $form->get('file')->getValue() : null ?>" alt="<?php echo $this->translate('My photo profile')?>"/>
-                <?php else: ?>
-                    <img width="150" height="150" src="/img/about/2.jpg" class="pull-left img-circle img-responsive"> 
-                <?php endif; ?>
-                <a target="_blank" href="/profile/<?php echo $profile->getSlug() ?>.html"><?php echo $profile->getName() ?></a>
-                </h2>
-            <?php else: ?>     
-                <h3><img width="150" height="150" src="/img/about/2.jpg" class="pull-left img-circle img-responsive"> <a href="#"><?php echo $this->translate('My Profile') ?></a></h3>
+                <h2><?php echo $profile->getName() ?></h2>
+            <?php else: ?>
+                <h3><?php echo $this->translate('My Profile') ?></h3>
             <?php endif; ?>
             <?php if(!empty($profile) && $profile->getSlogan()): ?>
                 <p><?php echo $profile->getSlogan() ?></p>
