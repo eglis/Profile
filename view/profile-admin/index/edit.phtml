@@ -1,0 +1,198 @@
+<?php $this->headTitle()->prepend($this->translate('Profile Admin')); ?>
+
+<?php 
+    $profile = $this->profile;
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', '/admin/profile/index/save');
+    $form->setAttribute('method', 'post');
+    echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h2>
+            <?php if(!empty($profile)): ?>
+                <a target="_blank" href="/profile/<?php echo $profile->getSlug() ?>.html"><?php echo $profile->getName() ?></a>
+            <?php else: ?>     
+                <?php echo $this->translate('My Profile') ?>
+            <?php endif; ?>
+            
+            <?php if(!empty($profile) && $profile->getSlogan()): ?>
+                <small><?php echo $profile->getSlogan() ?></small>
+              <?php else: ?>
+                <small><?php echo $this->translate('Describe yourself filling this application form. ') ?></small>
+            <?php endif; ?>
+        </h2>
+    </div>
+    <div class="col-lg-6">
+         <div class="text-right"><br/>
+             <?php echo $this->formElement($form->get('submit')); ?>
+		</div>
+    </div>
+</div>
+<hr/>
+
+<?php if ($this->error): ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                <?php echo $this->translate('There were one or more issues with your submission. Please correct them as indicated below.') ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="tabbable" id="tabs">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#tab1"><?php echo $this->translate('Main');?></a></li> 
+				<li class=""><a data-toggle="tab" href="#tab2"><?php echo $this->translate('Social Networks');?></a></li> 
+				<li class=""><a data-toggle="tab" href="#tab3"><?php echo $this->translate('Bio');?></a></li> 
+			</ul>
+    			<div class="tab-content">
+    			    <div class="tab-pane active" id="tab1">
+    			        <div class="row">
+    			                <?php if($form->get('file')->getValue()): ?>
+        			                <div class="col-md-2">
+        			                    <?php if (@!is_array(getimagesize($form->get('file')->getValue()))): ?>
+        			                        <img class="img-responsive img-rounded" src="<?php echo is_string($form->get('file')->getValue()) ? $form->get('file')->getValue() : null ?>" alt=""/>
+        			                    <?php else: ?>
+        			                        <a src="btn btn-success" href="<?php echo $form->get('file')->getValue() ?>"><?php echo $this->translate('Download')?></a>
+        			                    <?php endif; ?>
+        			                    
+                                        <?php if($form->get('file')->getValue()): ?>
+                                           <br/><hr/><p class="text-center"><a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" class="btn btn-danger" href="/profile/index/delfile"><?php echo $this->translate('Delete File')?></a></p>
+                                       <?php endif; ?>
+        			                </div>
+    			                <?php endif; ?>
+                                <div class="<?php echo $form->get('file')->getValue() ? "col-md-10" : "col-md-12"; ?>">
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('name')); ?>
+                                        <div class="input-group input-group-lg">
+                                          <span class="input-group-addon"><i class="fa fa-arrow-circle-right"></i></span>
+                                          <?php echo $this->formElement($form->get('name')); ?>
+                                        </div>
+                                        <?php echo $this->formElementErrors($form->get('name')); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('slogan')); ?>
+                                        <?php echo $this->formElement($form->get('slogan')); ?>
+                                        <?php echo $this->formElementErrors($form->get('slogan')); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('category_id')); ?>
+                                        <?php echo $this->formElement($form->get('category_id')); ?>
+                                        <?php echo $this->formElementErrors($form->get('category_id')); ?>
+                                    </div>
+                                    <div class="row">
+                                        <div class="<?php echo (!empty($profile) && $profile->getLatitude()) ? "col-md-8" : "col-md-12" ?>">
+                                            <div class="form-group">
+                                                <?php echo $this->formLabel($form->get('address')); ?>
+                                                <div class="input-group">
+                                                  <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                  <?php echo $this->formElement($form->get('address')); ?>
+                                                </div>
+                                                <?php echo $this->formElementErrors($form->get('address')); ?>
+                                            </div>
+                                        </div>
+                                        <div class="<?php echo (is_object($profile)) ? "col-md-4" : "hidden" ?>">
+                                            <?php echo (is_object($profile)) ? $this->createMap(array('latitude' => $profile->getLatitude(), 'longitude' => $profile->getLongitude()), 16) : null?>                                
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('telephone')); ?>
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                          <?php echo $this->formElement($form->get('telephone')); ?>
+                                        </div>
+                                        <?php echo $this->formElementErrors($form->get('telephone')); ?>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('public')); ?>
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-warning"></i></span>
+                                          <?php echo $this->formElement($form->get('public')); ?>
+                                        </div>
+                                        <?php echo $this->formElementErrors($form->get('public')); ?>
+                                    </div>
+                                    
+                                    <?php if(!$form->get('file')->getValue()): ?>
+                                        <div class="form-group">
+                                            <?php echo $this->formLabel($form->get('file')); ?>
+                                            <?php echo $this->formElement($form->get('file')); ?>
+                                            <?php echo $this->formElementErrors($form->get('file')); ?>
+                                        </div>
+                                   <?php endif; ?>
+                                </div>
+                        </div>
+                         
+    		   	</div>
+    		    <div class="tab-pane" id="tab2">
+    		        <div class="row">
+                        <div class="form-group">
+                            <?php echo $this->formLabel($form->get('googleplus')); ?>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+                              <?php echo $this->formElement($form->get('googleplus')); ?>
+                            </div>
+                            <?php echo $this->formElementErrors($form->get('googleplus')); ?>
+                        </div>
+                        
+                        <div class="form-group">
+                            <?php echo $this->formLabel($form->get('facebook')); ?>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                              <?php echo $this->formElement($form->get('facebook')); ?>
+                            </div>
+                            <?php echo $this->formElementErrors($form->get('facebook')); ?>
+                        </div>
+                        
+                        <div class="form-group">
+                            <?php echo $this->formLabel($form->get('twitter')); ?>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                              <?php echo $this->formElement($form->get('twitter')); ?>
+                            </div>
+                            <?php echo $this->formElementErrors($form->get('twitter')); ?>
+                        </div>
+                        
+                        <div class="form-group">
+                            <?php echo $this->formLabel($form->get('instagram')); ?>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+                              <?php echo $this->formElement($form->get('instagram')); ?>
+                            </div>
+                            <?php echo $this->formElementErrors($form->get('instagram')); ?>
+                        </div>
+                        
+                        <div class="form-group">
+                            <?php echo $this->formLabel($form->get('url')); ?>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                              <?php echo $this->formElement($form->get('url')); ?>
+                            </div>
+                            <?php echo $this->formElementErrors($form->get('url')); ?>
+                        </div>
+                    </div>
+    	   	    </div>
+    		    <div class="tab-pane" id="tab3">
+    		        <div class="row">
+                        <div class="form-group">
+                            <?php echo $this->formLabel($form->get('biography')); ?>
+                            <?php echo $this->formElement($form->get('biography')); ?>
+                            <?php echo $this->formElementErrors($form->get('biography')); ?>
+                        </div>
+                    </div>
+    	   	    </div>
+
+    	    </div>
+           
+    	</div>
+    </div>
+</div>
+<?php echo $this->formElement($form->get('id')); ?>
+
+<?php echo $this->form()->closeTag() ?>

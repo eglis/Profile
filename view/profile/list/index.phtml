@@ -1,0 +1,43 @@
+<?php $this->headTitle()->prepend('Users')?>
+
+<?php if($this->profiles): ?>
+<div class="container">
+    <div class="row">
+        <div class="col-12-lg">
+            <h2><i class="fa fa-users"></i> <?php echo $this->translate('Users') ?> <small><?php echo $this->translate('list of the users') ?></small></h2>
+            <hr/>
+            <ul class="list-group">
+                    <?php foreach ($this->profiles as $profile): ?>
+                        <?php if($profile->getPublic()): ?>
+                            <li class="list-group-item">
+                                <h4><a href="/profile/<?php echo $profile->getSlug() ?>.html"><?php echo $profile->getName() ?></a> <small><?php echo $profile->category ?></small></h4>
+                                <p><?php echo $profile->getSlogan()?></p>
+                                
+                                <ul class="list-inline">
+                                    <?php if ($profile->getFacebook()): ?>
+                                        <li><a target="_blank" href="http://www.facebook.com/<?php echo $profile->getFacebook() ?>"><i class="fa fa-facebook"></i></a></li>
+                                    <?php endif; ?>
+                                    <?php if ($profile->getGoogleplus()): ?>
+                                        <li><a target="_blank" href="https://plus.google.com/<?php echo $profile->getGoogleplus() ?>"><i class="fa fa-google-plus"></i></a></li>
+                                    <?php endif; ?>
+                                    <?php if ($profile->getTwitter()): ?>
+                                        <li><a target="_blank" href="https://www.twitter.com/<?php echo $profile->getTwitter() ?>"><i class="fa fa-twitter"></i></a></li>
+                                    <?php endif; ?>
+                                    <?php if ($profile->getInstagram()): ?>
+                                        <li><a target="_blank" href="http://www.instagram.com/<?php echo $profile->getInstagram() ?>"><i class="fa fa-instagram"></i></a></li>
+                                    <?php endif; ?>
+                                    <?php if ($profile->getUrl()): ?>
+                                        <li><a target="_blank" href="<?php echo $profile->getUrl() ?>"><i class="fa fa-link"></i></a></li>
+                                    <?php endif; ?>
+                                    <?php if ($profile->getTelephone()): ?>
+                                        <li><a href="skype:<?php echo $profile->getTelephone() ?>?call"><i class="fa fa-skype"></i></a></li>
+                                    <?php endif; ?>
+                                 </ul>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach;?>
+                </ul>
+        </div>
+    </div>
+</div>
+        <?php endif; ?>

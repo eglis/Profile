@@ -1,0 +1,215 @@
+/* USER PROFILE PAGE */
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.fb-profile-container {
+    overflow:hidden;
+    height: 250px;
+}
+
+.fb-profile-text{
+    padding: 5px;
+}
+
+.fb-profile-text h1{
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%;
+}
+
+
+
+.social-magnifier:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+.social-magnifier {
+    -webkit-transform: scale(0.8);
+    /* Browser Variations: */
+
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+}.social {
+    -webkit-transform: scale(0.8);
+    /* Browser Variations: */
+
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+}
+
+/*
+    Multicoloured Hover Variations
+*/
+
+#social-fb:hover {
+    color: #3B5998;
+}
+#social-tw:hover {
+    color: #4099FF;
+}
+#social-gp:hover {
+    color: #d34836;
+}
+#social-em:hover {
+    color: #f39c12;
+}
+
+
+
+
+
+
+.tab-pane {
+    padding-top: 20px;
+    padding-left: 5px;
+}
+
+.header-cp {
+    background-color: #6b1117;
+    border-bottom: 5px solid #000000;
+}
+
+.header-cp a, .header-cp p {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.header-cp a:hover {
+    color: #000000;
+}
+
+.img-circle {
+    border: 5px solid #fff;
+}
+
+.header-cp img {
+    margin-right: 20px;
+    margin-left: 13px;
+    margin-bottom: 13px;
+    height: 150px;
+    width: 150px;
+    margin-left: 13px;
+    margin-bottom: 13px;
+}
+
+.fb-profile{
+    margin-bottom: 30px;
+}
+
+.profile-container {
+    margin-bottom: 10px;
+}
+
+.profile-description {
+    text-align: justify;
+}
+
+.profile-social a{
+    color: #ffffff;
+}
+
+.profile-social {
+    padding-right: 20px;
+    padding-top: 25px;
+    position: absolute;
+    text-align: right;
+    width: 100%;
+}
+
+/* Large desktop */
+@media ( min-width: 1200px) {
+
+    .header-cp {
+        padding: 10px;
+        padding-left: 50px;
+    }
+
+    .header-cp img {
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+
+    .link-actions i {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 4em;
+    }
+
+    .link-actions li {
+        border-right: 2px dotted #990000;
+        line-height: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .link-actions {
+        margin-top: 40px;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media ( min-width: 768px) and (max-width: 979px) {
+
+    .fb-profile-text>h1{
+        font-weight: 700;
+        font-size:16px;
+    }
+
+    .fb-image-profile
+    {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%;
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media ( max-width: 767px) {
+    .fb-profile-container {
+        overflow:hidden;
+        height: 250px;
+    }
+
+    .img-circle {
+        border: 2px solid #fff;
+    }
+
+    .header-cp img {
+        margin-right: 20px;
+        margin-left: 13px;
+        margin-bottom: 13px;
+        height: 80px;
+        width: 80px;
+    }
+
+    .link-actions li {
+        line-height: 20px;
+        margin-right: 10px;
+    }
+}
+
+/* Landscape phones and down */
+@media ( max-width: 480px) {
+    .fb-profile-container {
+        overflow:hidden;
+        height: 150px;
+    }
+
+}

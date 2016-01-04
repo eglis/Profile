@@ -1,0 +1,247 @@
+<?php $this->headTitle()->prepend($this->translate('My Profile')); ?>
+<?php $this->inlineScript()->appendFile($this->basePath() . '/js/ckeditor.js'); ?>
+<?php 
+    $profile = $this->profile;
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', '/profile/index/save');
+    $form->setAttribute('method', 'post');
+    echo $this->form()->openTag($form);
+?>
+
+<div class="header-cp">
+    <div class="row">
+        <div class="col-lg-4">
+            
+            <?php if(!empty($profile)): ?>
+                <h2>
+                <?php if (NULL != $form->get('file')->getValue() && exif_imagetype(PUBLIC_PATH . "/" .$form->get('file')->getValue())): ?>
+                    <img class="img-responsive pull-left img-circle" width="150" height="150" src="<?php echo is_string($form->get('file')->getValue()) ? $form->get('file')->getValue() : null ?>" alt="<?php echo $this->translate('My photo profile')?>"/>
+                <?php else: ?>
+                    <img width="150" height="150" src="/img/about/2.jpg" class="pull-left img-circle img-responsive"> 
+                <?php endif; ?>
+                <a target="_blank" href="/profile/<?php echo $profile->getSlug() ?>.html"><?php echo $profile->getName() ?></a>
+                </h2>
+            <?php else: ?>     
+                <h3><img width="150" height="150" src="/img/about/2.jpg" class="pull-left img-circle img-responsive"> <a href="#"><?php echo $this->translate('My Profile') ?></a></h3>
+            <?php endif; ?>
+            <?php if(!empty($profile) && $profile->getSlogan()): ?>
+                <p><?php echo $profile->getSlogan() ?></p>
+              <?php else: ?>
+                <p><?php echo $this->translate('Describe yourself filling this application form. ') ?></p>
+            <?php endif; ?>
+        </div>
+        <div class="col-lg-8 text-right">
+            <ul class="link-actions list-inline ">
+                <li class="text-center" title="<?php echo $this->translate('Post your event right now!')?>"><a href="/myevents/add"><i class="fa fa-plus"></i> <span class="hidden-xs"><?php echo $this->translate('Add Event')?></span></a></li>
+                <li class="text-center" title="<?php echo $this->translate('Connect your profile to Facebook event account to sync your events')?>"><a href="/facebook/pages"><i class="fa fa-facebook"></i> <span class="hidden-xs">Facebook</span></a></li>
+                <li class="text-center" title="<?php echo $this->translate('Connect your profile to Google Calendar account to sync your events')?>"><a href="/google"><i class="fa fa-calendar"></i> <span class="hidden-xs">Google Calendar</span></a></li>
+                <li class="text-center" title="<?php echo $this->translate('Connect your profile to Instagram account to sync your photos')?>"><a href="/instagram"><i class="fa fa-instagram"></i> <span class="hidden-xs">Instagram</span></a></li>
+                <li class="text-center"title="<?php echo $this->translate('Connect your profile to Spotify to sync your playlists')?>"><a href="/spotify"><i class="fa fa-spotify"></i> <span class="hidden-xs">Spotify</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+<?php if ($this->error): ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                <?php echo $this->translate('There were one or more issues with your submission. Please correct them as indicated below.') ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+
+
+<hr/>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="tabbable" id="tabs">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#tab1"><?php echo $this->translate('Main');?></a></li> 
+				<li class=""><a data-toggle="tab" href="#tab2"><?php echo $this->translate('Social Networks');?></a></li> 
+				<li class=""><a data-toggle="tab" href="#tab3"><?php echo $this->translate('About you');?></a></li> 
+				<li class=""><a data-toggle="tab" href="#tab4"><i class="fa fa-paypal"></i> <?php echo $this->translate('Tickets On Line');?></a></li> 
+			</ul>
+    			<div class="tab-content">
+    			    <div class="tab-pane active" id="tab1">
+    			        <div class="row">
+    			                <?php if($form->get('file')->getValue()): ?>
+        			                <div class="col-md-2">
+        			                    <?php if (exif_imagetype(PUBLIC_PATH . "/" .$form->get('file')->getValue())): ?>
+        			                        <img class="img-responsive img-rounded" src="<?php echo is_string($form->get('file')->getValue()) ? $form->get('file')->getValue() : null ?>" alt=""/>
+        			                    <?php else: ?>
+        			                        <p class="text-center"><a class="btn btn-success" href="<?php echo $form->get('file')->getValue() ?>"><?php echo $this->translate('Download file')?></a></p>
+        			                    <?php endif; ?>
+        			                    
+                                        <?php if($form->get('file')->getValue()): ?>
+                                           <br/><hr/><p class="text-center"><a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" class="btn btn-danger" href="/profile/index/delfile"><?php echo $this->translate('Delete File')?></a></p>
+                                       <?php endif; ?>
+        			                </div>
+    			                <?php endif; ?>
+                                <div class="<?php echo $form->get('file')->getValue() ? "col-md-10" : "col-md-12"; ?>">
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('name')); ?>
+                                        <div class="input-group input-group-lg">
+                                          <span class="input-group-addon"><i class="fa fa-arrow-circle-right"></i></span>
+                                          <?php echo $this->formElement($form->get('name')); ?>
+                                        </div>
+                                        <?php echo $this->formElementErrors($form->get('name')); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('slogan')); ?>
+                                        <?php echo $this->formElement($form->get('slogan')); ?>
+                                        <?php echo $this->formElementErrors($form->get('slogan')); ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('category_id')); ?>
+                                        <?php echo $this->formElement($form->get('category_id')); ?>
+                                        <?php echo $this->formElementErrors($form->get('category_id')); ?>
+                                    </div>
+                                    <div class="row">
+                                        <div class="<?php echo (!empty($profile) && $profile->getLatitude()) ? "col-md-8" : "col-md-12" ?>">
+                                            <div class="form-group">
+                                                <?php echo $this->formLabel($form->get('address')); ?>
+                                                <div class="input-group">
+                                                  <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                  <?php echo $this->formElement($form->get('address')); ?>
+                                                </div>
+                                                <?php echo $this->formElementErrors($form->get('address')); ?>
+                                            </div>
+                                        </div>
+                                        <div class="<?php echo (is_object($profile)) ? "col-md-4" : "hidden" ?>">
+                                            <?php echo (is_object($profile)) ? $this->createMap(array('latitude' => $profile->getLatitude(), 'longitude' => $profile->getLongitude()), 16) : null?>                                
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('telephone')); ?>
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                          <?php echo $this->formElement($form->get('telephone')); ?>
+                                        </div>
+                                        <?php echo $this->formElementErrors($form->get('telephone')); ?>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <?php echo $this->formLabel($form->get('public')); ?>
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-warning"></i></span>
+                                          <?php echo $this->formElement($form->get('public')); ?>
+                                        </div>
+                                        <?php echo $this->formElementErrors($form->get('public')); ?>
+                                    </div>
+                                    
+                                    <?php if(!$form->get('file')->getValue()): ?>
+                                        <div class="form-group">
+                                            <?php echo $this->formLabel($form->get('file')); ?>
+                                            <?php echo $this->formElement($form->get('file')); ?>
+                                            <?php echo $this->formElementErrors($form->get('file')); ?>
+                                        </div>
+                                   <?php endif; ?>
+                                </div>
+                        </div>
+                         
+    		   	</div>
+    		    <div class="tab-pane" id="tab2">
+    		        <div class="row">
+    		            <div class="col-lg-12">
+                            <div class="form-group">
+                                <?php echo $this->formLabel($form->get('googleplus')); ?>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+                                  <?php echo $this->formElement($form->get('googleplus')); ?>
+                                </div>
+                                <?php echo $this->formElementErrors($form->get('googleplus')); ?>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo $this->formLabel($form->get('facebook')); ?>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                                  <?php echo $this->formElement($form->get('facebook')); ?>
+                                </div>
+                                <?php echo $this->formElementErrors($form->get('facebook')); ?>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo $this->formLabel($form->get('twitter')); ?>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                                  <?php echo $this->formElement($form->get('twitter')); ?>
+                                </div>
+                                <?php echo $this->formElementErrors($form->get('twitter')); ?>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo $this->formLabel($form->get('instagram')); ?>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+                                  <?php echo $this->formElement($form->get('instagram')); ?>
+                                </div>
+                                <?php echo $this->formElementErrors($form->get('instagram')); ?>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo $this->formLabel($form->get('url')); ?>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                                  <?php echo $this->formElement($form->get('url')); ?>
+                                </div>
+                                <?php echo $this->formElementErrors($form->get('url')); ?>
+                            </div>
+                        </div>
+                    </div>
+    	   	    </div>
+    		    <div class="tab-pane" id="tab3">
+    		        <div class="row">
+        		        <div class="col-lg-12">
+                            <div class="form-group">
+                                <?php echo $this->formLabel($form->get('biography')); ?>
+                                <?php echo $this->formElement($form->get('biography')); ?>
+                                <?php echo $this->formElementErrors($form->get('biography')); ?>
+                            </div>
+                        </div>
+                    </div>
+    	   	    </div>
+    		    <div class="tab-pane" id="tab4">
+    		        <div class="row">
+    		            <div class="col-lg-12">
+    		                <h4><i class="fa fa-paypal"></i> <?php echo $this->translate('Setting Up Your PayPal Account')?></h4>
+    		                <p><?php echo $this->translate('Before you start accepting payments, there are a few steps you can take to make sure your PayPal account is completely set up and validated.')?></p>
+    		                <ul>
+    		                    <li><?php echo $this->translate('Confirm your email address.') ?></li>
+    		                    <li><?php echo $this->translate('Link your bank account or credit card.') ?></li>
+    		                    <li><?php echo $this->translate('Lift your sending and withdrawal limits.') ?></li>
+    		                </ul>
+    		                <p><?php printf($this->translate('For further information click at this link %s'), "<a target='_blank' href='https://www.paypal.com/us/webapps/mpp/accept-payments-online'>Paypal</a>") ?></p>
+                            <div class="form-group">
+                                <?php echo $this->formLabel($form->get('paypal')); ?>
+                                <?php echo $this->formElement($form->get('paypal')); ?>
+                                <?php echo $this->formElementErrors($form->get('paypal')); ?>
+                                <small><i class="fa fa-info"></i> <?php printf($this->translate('The fee of the payment service is only %s%s'), $this->fee, "%")?></small>
+                            </div>
+                        </div>
+                    </div>
+    	   	    </div>
+    	    </div>
+           
+    	</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-5">
+        
+    </div>
+    <div class="col-lg-7">
+         <div class="text-right"><br/>
+		    <?php echo $this->formElement($form->get('submit')); ?> 
+		</div>
+    </div>
+</div>
+</div>
+<?php echo $this->formElement($form->get('id')); ?>
+
+<?php echo $this->form()->closeTag() ?>
