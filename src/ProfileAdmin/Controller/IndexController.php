@@ -168,8 +168,8 @@ class IndexController extends AbstractActionController
 	    $request = $this->getRequest();
 	     
 	    // create the profile upload directories
-	    @mkdir(PUBLIC_PATH . '/documents/');
-	    @mkdir(PUBLIC_PATH . '/documents/profile');
+	    @mkdir(__DIR__ . "/../../../../documents/");
+	    @mkdir(__DIR__ . "/../../../../documents/profile");
 	
 	     
 	    if (! $this->request->isPost()) {
@@ -197,8 +197,8 @@ class IndexController extends AbstractActionController
 	     
 	    // customize the path
 	    if(!empty($strslug)){
-	        @mkdir(PUBLIC_PATH . '/documents/profile/' . $strslug);
-	        $path = PUBLIC_PATH . '/documents/profile/' . $strslug . '/';
+	        @mkdir(__DIR__ . "/../../../../documents/profile/" . $strslug);
+	        $path = __DIR__ . "/../../../../" . documents/profile/" . $strslug . '/';
 	        $fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->top()->setTarget($path);
 	    }
 	     

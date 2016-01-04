@@ -146,8 +146,8 @@ class IndexController extends AbstractActionController
         $profile = $this->profileService->getByUserId($userId );
         
         $file = $profile->getFile();
-        if(file_exists(PUBLIC_PATH . $file)){
-            unlink(PUBLIC_PATH . $file);
+        if(file_exists(__DIR__ . "/../../../../" . $file)){
+            unlink(__DIR__ . "/../../../../" .  $file);
             $this->flashMessenger()->setNamespace('success')->addMessage('The file has been deleted!');
         }else{
             $this->flashMessenger()->setNamespace('danger')->addMessage('The file has been not found!');
@@ -179,10 +179,9 @@ class IndexController extends AbstractActionController
         $profile = $this->profileService->getByUserId($userId );
         
         // create the profile upload directories
-        @mkdir(PUBLIC_PATH . '/documents/');
-        @mkdir(PUBLIC_PATH . '/documents/profiles');
-        $path = PUBLIC_PATH . '/documents/profiles/';
-         
+        @mkdir(__DIR__ . '/../../../../documents/');
+        @mkdir(__DIR__ . '/../../../../documents/profiles');
+
         if (! $this->request->isPost()) {
             return $this->redirect()->toRoute(NULL, array (
                     'action' => 'index'
@@ -199,9 +198,7 @@ class IndexController extends AbstractActionController
         
         // customize the path
         if(!empty($strslug)){
-            @mkdir(PUBLIC_PATH . '/documents/profiles/' . $strslug);
-            $path = PUBLIC_PATH . '/documents/profiles/' . $strslug . '/';
-            $fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->top()->setTarget($path);
+            @mkdir(__DIR__ . '/../../../../documents/profiles/' . $strslug);
         }
         
         $form->setData($post);
@@ -236,23 +233,9 @@ class IndexController extends AbstractActionController
         
         $data->setSlug($strslug);
         $data->setUserId($userId);
-        
-        if($profile && !empty($post['googlecalendar'])){
-            // Checking if the preference is already set
-            $gcal_calendarid = $this->profileSettingService->findByKey('gcal_calendarid', $profile->getId());
-            if($gcal_calendarid){
-                $this->profileSettingService->delete($gcal_calendarid->getId());
-            }
-            
-            $profileSetting = new \Profile\Entity\ProfileSettings();
-            $profileSetting->setKey('gcal_calendarid');
-            $profileSetting->setValue($post['googlecalendar']);
-            $profileSetting->setProfileId($profile->getId());
-            $pSettingService = $this->profileSettingService->save($profileSetting);
-        }
-        
+
         // Save the data in the database
-        $record = $this->profileService->save($data);
+        $this->profileService->save($data);
          
         $this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate('The information have been saved.'));
     

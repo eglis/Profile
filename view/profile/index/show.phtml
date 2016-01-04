@@ -27,7 +27,7 @@
         </div>
 
         <?php if($profile->getFile()): ?>
-            <?php if (exif_imagetype(PUBLIC_PATH . "/" . $profile->getFile())): ?>
+            <?php if (exif_imagetype(__DIR__ . "/../../../../" . $profile->getFile())): ?>
                 <img align="left" class="fb-image-lg img-responsive" src="<?php echo $profile->getFile() ?>" alt="<?php echo $profile->getName() ?>"/>
                 <?php else: ?>
                 <img align="left" class="fb-image-lg img-responsive" src="/img/generic.jpg" alt="<?php echo $profile->getName() ?>"/>
@@ -38,7 +38,7 @@
     </div>
 
     <span class="hidden-xs">
-        <?php if (exif_imagetype(PUBLIC_PATH . "/" . $profile->getFile())): ?>
+        <?php if (exif_imagetype(__DIR__ . "/../../../../" . $profile->getFile())): ?>
             <img align="left" class="fb-image-profile thumbnail" src="<?php echo $profile->getFile() ?>" alt="<?php echo $profile->getName() ?>"/>
             <?php else: ?>
             <img align="left" class="fb-image-profile thumbnail" src="/img/generic.jpg" alt="<?php echo $profile->getName() ?>"/>
@@ -59,7 +59,7 @@
         <div class="col-lg-12">
             <div class="col-md-8 profile-description">
                 <?php if($profile->getFile()): ?>
-                    <?php if (!exif_imagetype(PUBLIC_PATH . "/" . $profile->getFile())): ?>
+                    <?php if (!exif_imagetype(__DIR__ . "/../../../../" . $profile->getFile())): ?>
                         <a class="btn btn-success" href="<?php echo $profile->getFile() ?>"><?php echo $this->translate('Download')?></a>
                     <?php endif; ?>
                 <?php endif; ?>

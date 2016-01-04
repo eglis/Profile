@@ -113,8 +113,8 @@ class ListController extends AbstractActionController
         $profile = $this->profileService->getByUserId($userId );
         
         $file = $profile->getFile();
-        if(file_exists(PUBLIC_PATH . $file)){
-            unlink(PUBLIC_PATH . $file);
+        if(file_exists(__DIR__ . "/../../../../" . $file)){
+            unlink(__DIR__ . "/../../../../" . $file);
             $this->flashMessenger()->setNamespace('success')->addMessage('The file has been deleted!');
         }else{
             $this->flashMessenger()->setNamespace('danger')->addMessage('The file has been not found!');
@@ -143,9 +143,9 @@ class ListController extends AbstractActionController
         $userId = $this->zfcUserAuthentication()->getIdentity()->getId();
          
         // create the profile upload directories
-        @mkdir(PUBLIC_PATH . '/documents/');
-        @mkdir(PUBLIC_PATH . '/documents/profiles');
-        $path = PUBLIC_PATH . '/documents/profiles/';
+        @mkdir(__DIR__ . "/../../../../" . '/documents/');
+        @mkdir(__DIR__ . "/../../../../" . '/documents/profiles');
+        $path = __DIR__ . "/../../../../" . '/documents/profiles/';
          
         if (! $this->request->isPost()) {
             return $this->redirect()->toRoute(NULL, array (
@@ -163,8 +163,8 @@ class ListController extends AbstractActionController
         
         // customize the path
         if(!empty($strslug)){
-            @mkdir(PUBLIC_PATH . '/documents/profiles/' . $strslug);
-            $path = PUBLIC_PATH . '/documents/profiles/' . $strslug . '/';
+            @mkdir(__DIR__ . "/../../../../" . '/documents/profiles/' . $strslug);
+            $path = __DIR__ . "/../../../../" . '/documents/profiles/' . $strslug . '/';
             $fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->top()->setTarget($path);
         }
         
