@@ -11,7 +11,7 @@
 
 <div class="header-cp">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-12">
             
             <?php if(!empty($profile)): ?>
                 <h2>
@@ -31,15 +31,7 @@
                 <p><?php echo $this->translate('Describe yourself filling this application form. ') ?></p>
             <?php endif; ?>
         </div>
-        <div class="col-lg-8 text-right">
-            <ul class="link-actions list-inline ">
-                <li class="text-center" title="<?php echo $this->translate('Post your event right now!')?>"><a href="/myevents/add"><i class="fa fa-plus"></i> <span class="hidden-xs"><?php echo $this->translate('Add Event')?></span></a></li>
-                <li class="text-center" title="<?php echo $this->translate('Connect your profile to Facebook event account to sync your events')?>"><a href="/facebook/pages"><i class="fa fa-facebook"></i> <span class="hidden-xs">Facebook</span></a></li>
-                <li class="text-center" title="<?php echo $this->translate('Connect your profile to Google Calendar account to sync your events')?>"><a href="/google"><i class="fa fa-calendar"></i> <span class="hidden-xs">Google Calendar</span></a></li>
-                <li class="text-center" title="<?php echo $this->translate('Connect your profile to Instagram account to sync your photos')?>"><a href="/instagram"><i class="fa fa-instagram"></i> <span class="hidden-xs">Instagram</span></a></li>
-                <li class="text-center"title="<?php echo $this->translate('Connect your profile to Spotify to sync your playlists')?>"><a href="/spotify"><i class="fa fa-spotify"></i> <span class="hidden-xs">Spotify</span></a></li>
-            </ul>
-        </div>
+
     </div>
 </div>
 
