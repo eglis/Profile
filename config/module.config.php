@@ -59,16 +59,17 @@ return array(
     				                        'icon' => 'fa fa-user'
         				                ),
         				        ),
+								'resource' => 'adminmenu',
         				),				
 						'profile' => array(
-								'label' => _('Profile'),
+								'label' => _('Customers'),
 								'resource' => 'menu',
 								'route' => 'zfcadmin/profile',
 								'privilege' => 'list',
 								'icon' => 'fa fa-list',
 								'pages' => array (
 										array (
-												'label' => 'Profile',
+												'label' => 'Our Customers',
 												'route' => 'zfcadmin/profile',
 												'icon' => 'fa fa-list'
 										),
