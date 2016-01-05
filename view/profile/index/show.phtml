@@ -26,24 +26,7 @@
             <?php endif; ?>
         </div>
 
-        <?php if($profile->getFile()): ?>
-            <?php if (exif_imagetype(__DIR__ . "/../../../../" . $profile->getFile())): ?>
-                <img align="left" class="fb-image-lg img-responsive" src="<?php echo $profile->getFile() ?>" alt="<?php echo $profile->getName() ?>"/>
-                <?php else: ?>
-                <img align="left" class="fb-image-lg img-responsive" src="/img/generic.jpg" alt="<?php echo $profile->getName() ?>"/>
-            <?php endif; ?><?php else: ?>
-            <img align="left" class="fb-image-lg img-responsive" src="/img/generic.jpg" alt="<?php echo $profile->getName() ?>"/>
-        <?php endif; ?>
-
     </div>
-
-    <span class="hidden-xs">
-        <?php if (exif_imagetype(__DIR__ . "/../../../../" . $profile->getFile())): ?>
-            <img align="left" class="fb-image-profile thumbnail" src="<?php echo $profile->getFile() ?>" alt="<?php echo $profile->getName() ?>"/>
-            <?php else: ?>
-            <img align="left" class="fb-image-profile thumbnail" src="/img/generic.jpg" alt="<?php echo $profile->getName() ?>"/>
-        <?php endif; ?>
-    </span>
 
     <div class="fb-profile-text">
         <h1><?php echo $profile->getName() ?>
