@@ -198,7 +198,7 @@ class IndexController extends AbstractActionController
 	    // customize the path
 	    if(!empty($strslug)){
 	        @mkdir(__DIR__ . "/../../../../documents/profile/" . $strslug);
-	        $path = __DIR__ . "/../../../../" . documents/profile/" . $strslug . '/';
+	        $path = __DIR__ . "/../../../../documents/profile/" . $strslug . '/';
 	        $fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->top()->setTarget($path);
 	    }
 	     
