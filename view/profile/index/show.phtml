@@ -79,14 +79,9 @@
                     <?php endif; ?>
                 </address>
 
-                <?php echo $this->userplaylists($profile->getUserid());?>
-
             </div>
         </div>
     </div>
-
-    <?php echo $this->tracks($profile->getUserid());?>
-    <?php echo $this->photos($profile->getUserid());?>
 
     <h3><i class="fa fa-calendar"></i> <?php echo $this->translate('Our Events')?> <small><?php echo $this->translate('Discover our events')?></small></h3>
     <p><?php echo $this->translate('Click on the following events to know more details.')?></p>

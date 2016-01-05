@@ -45,7 +45,6 @@ namespace Profile\Service;
 
 use Zend\EventManager\EventManager;
 
-use Profile\Entity\Profile;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
