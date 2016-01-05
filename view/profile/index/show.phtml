@@ -2,51 +2,16 @@
 <?php $this->headTitle()->prepend($profile->getName()); ?>
 <?php $fulladdress = $profile->getAddress() ?>
 
-<div class="fb-profile">
-    <div class="fb-profile-container">
-        <div class="profile-social">
-            <?php if($profile->getGoogleplus()): ?>
-                <a target="_blank" href="https://plus.google.com/<?php echo $profile->getGoogleplus() ?>"><i id="social-gp" class="fa fa-google-plus-square fa-3x  social-magnifier"></i></a>
-            <?php endif; ?>
-
-            <?php if($profile->getFacebook()): ?>
-                <a target="_blank" href="<?php echo $profile->getFacebook() ?>"><i id="social-fb" class="fa fa-facebook-square fa-3x  social-magnifier"></i></a>
-            <?php endif; ?>
-
-            <?php if($profile->getInstagram()): ?>
-                <a target="_blank" href="https://www.instagram.com/<?php echo $profile->getInstagram() ?>"><i id="social-em" class="fa fa-instagram fa-3x  social-magnifier"></i></a>
-            <?php endif; ?>
-
-            <?php if($profile->getTwitter()): ?>
-                <a target="_blank" href="https://www.twitter.com/<?php echo $profile->getTwitter() ?>"><i id="social-tw" class="fa fa-twitter-square fa-3x  social-magnifier"></i></a>
-            <?php endif; ?>
-
-            <?php if($profile->getUrl()): ?>
-                <a target="_blank" href="<?php echo $profile->getUrl()?>"><i class="fa fa-globe fa-3x  social-magnifier"></i></a>
-            <?php endif; ?>
-        </div>
-
-    </div>
-
-    <div class="fb-profile-text">
-        <h1><?php echo $profile->getName() ?>
-            <small> <?php echo $profile->getSlogan(); ?></small>
-        </h1>
-    </div>
-</div>
-
-
-
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
+            <div class="fb-profile-text">
+                <h1><?php echo $profile->getName() ?>
+                    <small> <?php echo $profile->getSlogan(); ?></small>
+                </h1>
+            </div>
             <div class="col-md-8 profile-description">
-                <?php if($profile->getFile()): ?>
-                    <?php if (!exif_imagetype(__DIR__ . "/../../../../" . $profile->getFile())): ?>
-                        <a class="btn btn-success" href="<?php echo $profile->getFile() ?>"><?php echo $this->translate('Download')?></a>
-                    <?php endif; ?>
-                <?php endif; ?>
-                <?php echo $profile->getBiography() ? $profile->getBiography() : $this->translate('No description has been found!') ?>
+                <?php echo $profile->getBiography() ? $profile->getBiography() : $this->translate('No description has been found for this company!') ?>
             </div>
             <div class="col-md-4">
                 <?php if($profile->getLatitude() && $profile->getLongitude()): ?>
@@ -61,16 +26,33 @@
                         <abbr title="<?php echo $this->translate('Phone')?>">P:</abbr> <a href="callto://<?php echo $profile->getTelephone()?>"><?php echo $profile->getTelephone()?></a>
                     <?php endif; ?>
                 </address>
+                <?php if($profile->getGoogleplus()): ?>
+                    <a target="_blank" href="https://plus.google.com/<?php echo $profile->getGoogleplus() ?>"><i id="social-gp" class="fa fa-google-plus-square fa-2x  social-magnifier"></i></a>
+                <?php endif; ?>
 
+                <?php if($profile->getFacebook()): ?>
+                    <a target="_blank" href="<?php echo $profile->getFacebook() ?>"><i id="social-fb" class="fa fa-facebook-square fa-2x  social-magnifier"></i></a>
+                <?php endif; ?>
+
+                <?php if($profile->getInstagram()): ?>
+                    <a target="_blank" href="https://www.instagram.com/<?php echo $profile->getInstagram() ?>"><i id="social-em" class="fa fa-instagram fa-2x  social-magnifier"></i></a>
+                <?php endif; ?>
+
+                <?php if($profile->getTwitter()): ?>
+                    <a target="_blank" href="https://www.twitter.com/<?php echo $profile->getTwitter() ?>"><i id="social-tw" class="fa fa-twitter-square fa-2x  social-magnifier"></i></a>
+                <?php endif; ?>
+
+                <?php if($profile->getUrl()): ?>
+                    <a target="_blank" href="<?php echo $profile->getUrl()?>"><i class="fa fa-globe fa-2x  social-magnifier"></i></a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 
-    <h3><i class="fa fa-calendar"></i> <?php echo $this->translate('Our Events')?> <small><?php echo $this->translate('Discover our events')?></small></h3>
-    <p><?php echo $this->translate('Click on the following events to know more details.')?></p>
+    <h3><i class="fa fa-calendar"></i> <?php echo $this->translate('Our Reviews')?> <small><?php echo $this->translate('Discover the products bought')?></small></h3>
+    <p><?php echo $this->translate('Click on the following reviews to know more details.')?></p>
 
 
-    <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <span title="<?php echo $this->translate('Signed up')?>" class="label label-success"><i class="fa fa-refresh"></i> <?php echo $this->datetime($profile->getCreatedat(), 'dd/MM/Y') ?></span>
@@ -82,6 +64,6 @@
                 <?php endif; ?>
             </div>
         </div>
-    </div>
+
 </div>
 

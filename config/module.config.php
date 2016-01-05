@@ -40,12 +40,12 @@ return array(
 		),
 		'navigation' => array(
         		'default' => array(
-//         		        'profile' => array(
-//         		                'label' => _('Members'),
-//         		                'route' => 'profile/list',
-//         		                'resource' => 'menu',  // look at the bjyauthorize.global.php config file
-//         		                'privilege' => 'list', 
-//         		        ),
+         		        'profile' => array(
+         		                'label' => _('Members'),
+         		                'route' => 'profile/list',
+         		                'resource' => 'menu',  // look at the bjyauthorize.global.php config file
+         		                'privilege' => 'list',
+         		        ),
         		       
         		),
 				'admin' => array(
