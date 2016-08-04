@@ -1,19 +1,18 @@
 {
-  "name": "shineisp/shineisp-profile",
-  "description": "Profile module for ShineISP project",
+  "name": "shinesoftware-zf-modules/profile",
+  "description": "Profile module",
   "license": "BSD-2-Clause",
   "type": "library",
   "minimum-stability": "dev",
   "keywords": [
-    "zf2",
-    "shineisp"
+    "zf2"
   ],
-  "homepage": "http://github.com/shineisp/Profile",
+  "homepage": "https://github.com/shinesoftware-zf-modules/Profile",
   "authors": [
     {
       "name": "Michelangelo Turillo",
-      "email": "info@shineisp.com",
-      "homepage": "http://shineisp.com"
+      "email": "info@shinesoftware.com",
+      "homepage": "http://shinesoftware.com"
     }
   ],
   "require": {
