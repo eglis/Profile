@@ -69,7 +69,7 @@ class Module implements DependencyIndicatorInterface{
      */
     public function getModuleDependencies()
     {
-    	return array('Base');
+    	return array('Base', 'GoogleMaps');
     }
 
     public function getConfig()

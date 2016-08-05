@@ -49,21 +49,17 @@
         </div>
     </div>
 
-    <h3><i class="fa fa-calendar"></i> <?php echo $this->translate('Our Reviews')?> <small><?php echo $this->translate('Discover the products bought')?></small></h3>
-    <p><?php echo $this->translate('Click on the following reviews to know more details.')?></p>
-
-
-        <div class="row">
-            <div class="col-lg-8">
-                <span title="<?php echo $this->translate('Signed up')?>" class="label label-success"><i class="fa fa-refresh"></i> <?php echo $this->datetime($profile->getCreatedat(), 'dd/MM/Y') ?></span>
-                <span title="<?php echo $this->translate('Update time')?>" class="label label-default"><i class="fa fa-refresh"></i> <?php echo $this->datetime($profile->getUpdatedat(), 'dd/MM/Y') ?></span>
-            </div>
-            <div class="col-lg-4 text-right">
-                <?php if($profile->getPaypal()): ?>
-                    <img width="100" class="img-responsive img-thumbnail" src="/img/paypal.gif" />
-                <?php endif; ?>
-            </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <span title="<?php echo $this->translate('Signed up')?>" class="label label-success"><i class="fa fa-refresh"></i> <?php echo $this->datetime($profile->getCreatedat(), 'dd/MM/Y') ?></span>
+            <span title="<?php echo $this->translate('Update time')?>" class="label label-default"><i class="fa fa-refresh"></i> <?php echo $this->datetime($profile->getUpdatedat(), 'dd/MM/Y') ?></span>
         </div>
+        <div class="col-lg-4 text-right">
+            <?php if($profile->getPaypal()): ?>
+                <img width="100" class="img-responsive img-thumbnail" src="/img/paypal.gif" />
+            <?php endif; ?>
+        </div>
+    </div>
 
 </div>
 

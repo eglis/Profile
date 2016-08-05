@@ -33,8 +33,7 @@ return array(
 					     // Custom Module
 						array('route' => 'zfcadmin/profile', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/profile/default', 'roles' => array('admin')),
-						array('route' => 'zfcadmin/profile/settings', 'roles' => array('admin')),
-						
+
 					),
 			  ),
 		),
@@ -49,27 +48,15 @@ return array(
         		       
         		),
 				'admin' => array(
-        				'settings' => array(
-                				'label' => _('Settings'),
-                				'route' => 'zfcadmin',
-        				        'pages' => array (
-    				                    array (
-    				                        'label' => 'Profile',
-    				                        'route' => 'zfcadmin/profile/settings',
-    				                        'icon' => 'fa fa-user'
-        				                ),
-        				        ),
-								'resource' => 'adminmenu',
-        				),				
 						'profile' => array(
-								'label' => _('Customers'),
+								'label' => _('Profiles'),
 								'resource' => 'menu',
 								'route' => 'zfcadmin/profile',
 								'privilege' => 'list',
 								'icon' => 'fa fa-list',
 								'pages' => array (
 										array (
-												'label' => 'Our Customers',
+												'label' => _('User'),
 												'route' => 'zfcadmin/profile',
 												'icon' => 'fa fa-list'
 										),
@@ -101,20 +88,6 @@ return array(
         																'id' => '[0-9]*'
         														),
         														'defaults' => array ()
-        												)
-        										),
-        										'settings' => array (
-        												'type' => 'Segment',
-        												'options' => array (
-        														'route' => '/settings/[:action[/:id]]',
-        														'constraints' => array (
-        																'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-        																'id' => '[0-9]*'
-        														),
-        														'defaults' => array (
-            														'controller' => 'ProfileSettings\Controller\Index',
-            														'action'     => 'index',
-        														)
         												)
         										)
         								),
